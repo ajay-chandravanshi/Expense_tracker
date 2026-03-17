@@ -1,6 +1,6 @@
 
 
-const ExpenseItem = ({item, deleteExpense}) => {
+const ExpenseItem = ({item, deleteExpense,editExpense}) => {
   return (
     <div className="card">
       <div>
@@ -11,6 +11,9 @@ const ExpenseItem = ({item, deleteExpense}) => {
 
       <div className="right">
         <span className="amount">{item.amount} Rs</span>
+
+         <button className="delete-btn" onClick={()=>editExpense(item)}>Edit</button>
+
         <button className="delete-btn" onClick={()=>deleteExpense(item.id)}>Delete</button>
 
       </div>

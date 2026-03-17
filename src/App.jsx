@@ -39,7 +39,7 @@ const App=()=>{
   }
 
   const updateExpense=(updatedExpense)=>{
-    const updatedList= expenses.map((e)=>e.id === updateExpense.id ? updatedExpense : e)
+    const updatedList= expenses.map((e)=>e.id === updatedExpense.id ? updatedExpense : e)
     setExpenses(updatedList)
     setIsEditing(false)
     setEditData(null)
@@ -57,7 +57,7 @@ const App=()=>{
       <h1>Expense Tracker</h1>
 
       <Summary expenses={expenses} />
-      <ExpenseForm  addExpense={addExpense} />
+      <ExpenseForm  addExpense={addExpense} updateExpense={updateExpense} isEditing={isEditing} editdata={editdata} />
       <Filter  filter={filter} setFilter={setFilter} />
       <ExpenseList  expenses={filteredExpenses} deleteExpense={deleteExpense} editExpense={editExpense} />
 

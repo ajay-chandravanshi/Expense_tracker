@@ -32,8 +32,8 @@ const ExpenseForm = ({addExpense,updateExpense,isEditing,editdata}) => {
         }else{
             addExpense(expense)
         }
+
         
-        addExpense(expense)
         setTitle("")
         setAmount("")
         setCategory("Food")
@@ -66,7 +66,7 @@ const ExpenseForm = ({addExpense,updateExpense,isEditing,editdata}) => {
 
         <input type="date" value={date} onChange={(e)=>setDate(e.target.value)} />
 
-        <button>Add Expense</button>
+        <button>{isEditing ? "Update Expense" : "Add Expense"}</button>
         {error && <p className="error">{error}</p> }
     </form>
   )
