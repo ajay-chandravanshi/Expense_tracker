@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
-const ExpenseForm = ({addExpense}) => {
+const ExpenseForm = ({addExpense,updateExpense,isEditing,editdata}) => {
     const[title,setTitle]=useState("")
     const[amount,setAmount]=useState("")
     const[category,setCategory]=useState("Food")
@@ -20,14 +20,20 @@ const ExpenseForm = ({addExpense}) => {
         }
 
         const expense={
-            id:Date.now(),
+            id:isEditing ? editdata.id : Date.now(),
             title,
             amount:Number(amount),
             category,
             date,
         }
 
-        addExpense(expense)
+        if(isEditing){
+            updateExpense(expense)
+        }else{
+            addExpense(expense)
+        }
+
+        
         setTitle("")
         setAmount("")
         setCategory("Food")
@@ -35,6 +41,15 @@ const ExpenseForm = ({addExpense}) => {
         setError("")
 
     }
+
+    useEffect(()=>{
+        if(editdata){
+            setTitle(editdata.title)
+            setAmount(editdata.amount)
+            setCategory(editdata.category)
+            setDate(editdata.date)
+        }
+    },[editdata])
   return (
     <form className="form" onSubmit={handleSubmit}>
         <input type="text" placeholder="Title" value={title} onChange={(e)=>setTitle(e.target.value)} />
@@ -51,7 +66,7 @@ const ExpenseForm = ({addExpense}) => {
 
         <input type="date" value={date} onChange={(e)=>setDate(e.target.value)} />
 
-        <button>Add Expense</button>
+        <button>{isEditing ? "Update Expense" : "Add Expense"}</button>
         {error && <p className="error">{error}</p> }
     </form>
   )
