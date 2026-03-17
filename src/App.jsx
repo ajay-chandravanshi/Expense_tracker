@@ -38,6 +38,13 @@ const App=()=>{
     setIsEditing(true)
   }
 
+  const updateExpense=(updatedExpense)=>{
+    const updatedList= expenses.map((e)=>e.id === updateExpense.id ? updatedExpense : e)
+    setExpenses(updatedList)
+    setIsEditing(false)
+    setEditData(null)
+  }
+
   const clearAll=()=>{
     if(window.confirm("Are You Sure?")){
       setExpenses([])
@@ -45,7 +52,6 @@ const App=()=>{
   }
 
   const filteredExpenses=filter === "All"  ? expenses : expenses.filter((e)=>e.category === filter)
-
   return(
     <div className='container'>
       <h1>Expense Tracker</h1>
@@ -53,7 +59,8 @@ const App=()=>{
       <Summary expenses={expenses} />
       <ExpenseForm  addExpense={addExpense} />
       <Filter  filter={filter} setFilter={setFilter} />
-      <ExpenseList  expenses={filteredExpenses} deleteExpense={deleteExpense} />
+      <ExpenseList  expenses={filteredExpenses} deleteExpense={deleteExpense} editExpense={editExpense} />
+
 
       <button className='clear-btn'onClick={clearAll} >Clear All</button>
     </div>

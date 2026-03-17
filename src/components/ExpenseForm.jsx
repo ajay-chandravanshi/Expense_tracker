@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
-const ExpenseForm = ({addExpense}) => {
+const ExpenseForm = ({addExpense,updateExpense,isEditing,editdata}) => {
     const[title,setTitle]=useState("")
     const[amount,setAmount]=useState("")
     const[category,setCategory]=useState("Food")
@@ -35,6 +35,15 @@ const ExpenseForm = ({addExpense}) => {
         setError("")
 
     }
+
+    useEffect(()=>{
+        if(editdata){
+            setTitle(editdata.title)
+            setAmount(editdata.amount)
+            setCategory(editdata.category)
+            setDate(editdata.date)
+        }
+    },[editdata])
   return (
     <form className="form" onSubmit={handleSubmit}>
         <input type="text" placeholder="Title" value={title} onChange={(e)=>setTitle(e.target.value)} />
