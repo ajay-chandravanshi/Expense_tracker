@@ -20,13 +20,19 @@ const ExpenseForm = ({addExpense,updateExpense,isEditing,editdata}) => {
         }
 
         const expense={
-            id:Date.now(),
+            id:isEditing ? editdata.id : Date.now(),
             title,
             amount:Number(amount),
             category,
             date,
         }
 
+        if(isEditing){
+            updateExpense(expense)
+        }else{
+            addExpense(expense)
+        }
+        
         addExpense(expense)
         setTitle("")
         setAmount("")
