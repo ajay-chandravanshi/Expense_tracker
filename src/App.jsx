@@ -33,6 +33,11 @@ const App=()=>{
     setExpenses(updated)
   }
 
+  const editExpense=(item)=>{
+    setEditData(item)
+    setIsEditing(true)
+  }
+
   const clearAll=()=>{
     if(window.confirm("Are You Sure?")){
       setExpenses([])
