@@ -10,6 +10,8 @@ const App=()=>{
 
   const[expenses,setExpenses]=useState([])
   const[filter,setFilter]=useState("All")
+  const[editdata,setEditData]=useState(null)
+  const[isEditing,setIsEditing]=useState(false)
 
   useEffect(()=>{
     const saved=localStorage.getItem("expenses")

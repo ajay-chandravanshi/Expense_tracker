@@ -12,6 +12,7 @@ const ExpenseItem = ({item, deleteExpense}) => {
       <div className="right">
         <span className="amount">{item.amount} Rs</span>
         <button className="delete-btn" onClick={()=>deleteExpense(item.id)}>Delete</button>
+
       </div>
     </div>
   )
